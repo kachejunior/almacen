@@ -8,7 +8,7 @@
                     <a class="collapsed text-info" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" style="margin-top:5px; ">
                      Busqueda Avanzada <i class="icon-search"></i>
                     </a>
-				  <a href="<?php echo base_url().'entregas/nuevo'; ?>" class="btn-primary btn-small pull-right">
+				  <a href="<?php echo base_url().'entregas/nuevo'; ?>" class="btn-inverse btn-small pull-right">
 				  <i class="icon-plus-sign icon-white"></i> Crear nuevo acta de entrega</a>						
                   </div>
                   <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
@@ -19,13 +19,21 @@
 									<label>Sede</label>
 									<span class="add-on"><i class="icon-home"></i></span>
 									<select class="span9" name="_sede" id="_sede">
-										<option value="">--Sede--</option>
-										<?php 
-											foreach ($sedes as $row)
-											{
-												$str = '<option value ='.$row->id.'>'.$row->nombre.'</option>';
+										<?php
+										if (($this->session->userdata('grupo_usuario') == 1) or ($this->session->userdata('grupo_usuario') == 2)) {
+											echo '<option value="">--Sede--</option>';
+											foreach ($sedes as $row) {
+												$str = '<option value =' . $row->id . '>' . $row->nombre . '</option>';
 												echo $str;
-											} 		
+											}
+										}
+
+										if ($this->session->userdata('grupo_usuario') == 3) {
+											echo '<option value="1">Caroni</option>';
+										}
+										if ($this->session->userdata('grupo_usuario') == 4) {
+											echo '<option value="2">Heres</option>';
+										}
 										?>
 									</select>
 								</div>		
@@ -78,7 +86,7 @@
 	<!--</form>-->
 		<table id="tabla" class="table table-hover table-bordered table-striped">
 			<thead>
-				<tr style="background:#d44413; color: #FFF">
+				<tr style="background:#000; color: #FFF">
 					<th class="span1">Id</th>
 					<th class="span2">Fecha de Entrega</th>
 					<th class="span2">Sede</th>
@@ -99,11 +107,11 @@
 					'<td>'.$row->nombre_usuario.'</td>'.
 					'<td class="centrado">'.
 						'<a class="btn btn-mini btn-warning" href="'.  base_url().'entregas/edicion/'.$row->id.'">'.
-						' <i class="icon-search icon-white"></i></a>'.
-						' <a class="btn btn-mini btn-danger" onclick="eliminar('.$row->id.')">'.
-						' <i class="icon-minus icon-white"></i></a>'.
-					'</td>'.
-					'</tr>';
+						' <i class="icon-search icon-white"></i></a>';
+				if ($this->session->userdata('grupo_usuario') == 1) {
+					$str = $str . '<a class="btn btn-mini btn-danger" onclick="eliminar(' . $row->id . ')"><i class="icon-minus icon-white"></i></a>';
+				}
+				$str = $str . '</td></tr>';
 				echo $str;
 			}
 			?>
@@ -113,4 +121,5 @@
 </form>
 
 <script type="text/javascript">var tb = '<?php echo $tb;?>';</script>
+<script type="text/javascript">var grupo_usuario = '<?php echo $this->session->userdata('grupo_usuario') ; ?>';</script>
 <script src="<?php echo base_url();?>media/funcion_js/fn_actas_entregas.js"></script>

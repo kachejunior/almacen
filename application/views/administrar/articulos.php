@@ -112,12 +112,11 @@
 								'<td>' . $row->ubicacion . '</td>' .
 								'<td>' . $row->cantidad_disponible . '</td>' .
 								'<td class="centrado">' .
-								'<a class="btn btn-mini btn-warning" onclick="get(' . $row->id . ')">' .
-								' <i class="icon-wrench icon-white"></i></a>' .
-								' <a class="btn btn-mini btn-danger" onclick="eliminar(' . $row->id . ')">' .
-								' <i class="icon-minus icon-white"></i></a>' .
-								'</td>' .
-								'</tr>';
+								'<a class="btn btn-mini btn-warning" onclick="get(' . $row->id . ')"><i class="icon-wrench icon-white"></i></a>';
+				if ($this->session->userdata('grupo_usuario') == 1) {
+					$str = $str . '<a class="btn btn-mini btn-danger" onclick="eliminar(' . $row->id . ')"><i class="icon-minus icon-white"></i></a>';
+				}
+				$str = $str . '</td></tr>';
 				echo $str;
 			}
 			?>
@@ -214,4 +213,5 @@
 </div>
 
 <script type="text/javascript">var tb = '<?php echo $tb; ?>';</script>
+<script type="text/javascript">var grupo_usuario = '<?php echo $this->session->userdata('grupo_usuario') ; ?>';</script>
 <script src="<?php echo base_url(); ?>media/funcion_js/fn_articulos.js"></script>

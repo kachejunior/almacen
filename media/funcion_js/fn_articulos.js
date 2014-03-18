@@ -49,13 +49,13 @@ function actualizar() {
 								'<td>' + datos[i].nombre_sede + '</td>' +
 								'<td class="centrado">' + datos[i].nombre_gerencia + '</td>' +
 								'<td class="centrado">' + datos[i].nombre + '</td>' +
-								'<td class="centrado">' + datos[i].ubicacion+ '</td>' +
+								'<td class="centrado">' + datos[i].ubicacion + '</td>' +
 								'<td class="centrado">' + datos[i].cantidad_disponible + '</td>' +
 								'<td class="centrado"><a class="btn btn-mini btn-warning" onclick="get(' + datos[i].id + ')">' +
-								'<i class="icon-wrench icon-white"></i></a>' +
-								' <a class="btn btn-mini btn-danger" onclick="eliminar(' + datos[i].id + ')">' +
-								'<i class="icon-minus icon-white"></i></a></td>' +
-								'</tr>';
+								'<i class="icon-wrench icon-white"></i></a>';
+				if (grupo_usuario == 1)
+					cadena = cadena + ' <a class="btn btn-mini btn-danger" onclick="eliminar(' + datos[i].id + ')"><i class="icon-minus icon-white"></i></a>';
+								cadena = cadena + '</td></tr>';
 				$('#tabla tbody').append(cadena);
 				if (!$('#tablal tbody').is(':visible')) {
 					$('#tabla caption').click();
@@ -196,10 +196,10 @@ function buscar() {
 								'<td class="centrado">' + datos[i].ubicacion + '</td>' +
 								'<td class="centrado">' + datos[i].cantidad_disponible + '</td>' +
 								'<td class="centrado"><a class="btn btn-mini btn-warning" onclick="get(' + datos[i].id + ')">' +
-								'<i class="icon-wrench icon-white"></i></a>' +
-								' <a class="btn btn-mini btn-danger" onclick="eliminar(' + datos[i].id + ')">' +
-								'<i class="icon-minus icon-white"></i></a></td>' +
-								'</tr>';
+								'<i class="icon-wrench icon-white"></i></a>';
+							if (grupo_usuario == 1)
+					cadena = cadena + ' <a class="btn btn-mini btn-danger" onclick="eliminar(' + datos[i].id + ')"><i class="icon-minus icon-white"></i></a>';
+								cadena = cadena + '</td></tr>';
 				$('#tabla tbody').append(cadena);
 				if (!$('#tablal tbody').is(':visible')) {
 					$('#tabla caption').click();

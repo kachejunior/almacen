@@ -11,9 +11,9 @@
         
 		<?php if( $this->session->userdata('nombre')==TRUE) { ?>
         <ul class="nav">
-         <li><a href="<?php echo base_url()?>estadistica">Estadisticas</a></li>
+         <!--<li><a href="<?php echo base_url()?>estadistica">Estadisticas</a></li>-->
 		<li><a href="<?php echo base_url()?>entregas">Actas Entregas</a></li>
-		<li><a href="<?php echo base_url()?>salidas">Actas Recepcion</a></li>
+		<!--<li><a href="<?php echo base_url()?>salidas">Actas Recepcion</a></li>-->
 		<li><a href="<?php echo base_url()?>inventario">Inventario</a></li>
 		<?php if($this->session->userdata('grupo_usuario')==1) { ?>
 		<li class="dropdown">
